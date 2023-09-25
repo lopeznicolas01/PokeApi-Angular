@@ -1,0 +1,52 @@
+<div class="container mt-5" style="background-color: #00236f; border-radius: 2%">
+    <h2 style="color: white; text-align: center">Tabla de Pokemones</h2>
+
+    <!-- Botones de Acción -->
+    <div class="mb-3" style="text-align: right; margin-right: 4%">
+        <input type="text" style="margin-right: 1%" placeholder="" [(ngModel)]="datoBuscar" />
+        <button class="btn btn-primary" style="background-color: #1a63ff" (click)="buscar()">
+            Buscar
+        </button>
+        <button class="btn btn-danger" style="margin-left: 1%" (click)="quitarFiltro()">
+            Quitar Filtro
+        </button>
+    </div>
+
+    <!-- Tabla de Datos -->
+    <div class="d-flex justify-content-center">
+        <div class="table-responsive justify-content-center" style="border-radius: 20px; width: 80%">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombre</th>
+                        <th>URL</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="
+              let item of mostrarResultados
+                ? arregloResponse
+                : copiaArregloResponse;
+              let i = index
+            ">
+                        <tr>
+                            <td>{{ i + 1 }}</td>        
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.url }}</td>                
+                            <td style="text-align: center">
+                                <button class="btn btn-primary" style="background-color: #1a63ff" (click)="openModal(item.name)">
+                                    Ver
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
