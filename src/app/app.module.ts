@@ -7,12 +7,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ModalDetallePokemonComponent } from './modal-detalle-pokemon/modal-detalle-pokemon.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ModalDetallePokemonComponent
+    ModalDetallePokemonComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
