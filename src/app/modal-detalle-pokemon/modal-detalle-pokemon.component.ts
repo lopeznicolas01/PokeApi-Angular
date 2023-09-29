@@ -17,17 +17,20 @@ export class ModalDetallePokemonComponent implements OnInit {
   detallesPokemon:any={};
 
   ngOnInit(): void {
-    this.obtenerDetalles(this.data);
+    //this.obtenerDetalles(this.data);
+    this.obtenerLocalDetalles(this.data);
   }
 
   closeModal() {
     this.modal.dismissAll();
   }
 
-  obtenerDetalles(name){
-    this.apiPokemonService.getDataPokemonDetail(name).subscribe(data=>{
-      this.detallesPokemon=data;
+  obtenerLocalDetalles(name){
+    this.apiPokemonService.getLocalDataDetail(name).subscribe(data=>{
+      this.detallesPokemon=data.body;
     })
 
   }
+
+
 }

@@ -1,0 +1,68 @@
+<div *ngIf="confirmando">
+    <div class="modal-header justify-content-center">
+        <h4 class="modal-tittle">Editar datos de {{data.toUpperCase()}}</h4>
+        <button class="close" aria-label="close" type="button" 
+        style="position: absolute; top: 0; right: 0; margin-right: 10px; margin-top: 10px; background-color: transparent;border-color: transparent;" 
+        (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="experiencia-base">Experiencia base:</label>
+            <input type="number" class="form-control" id="experiencia-base" [(NgModel)]="baseExp" placeholder="Experiencia base">
+          </div>
+        
+          <div class="form-group">
+            <label for="peso">Peso:</label>
+            <input type="number" class="form-control" id="peso" [(NgModel)]="peso"placeholder="Peso">
+          </div>
+        
+          <div class="form-group">
+            <label for="altura">Altura:</label>
+            <input type="number" class="form-control" id="altura" [(NgModel)]="altura" placeholder="Altura">
+          </div>
+        
+          <div class="form-group">
+            <label>¿Es default?: </label>
+            <br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="opciones" id="opcion1" [(ngModel)]="esDefaultSi" (change)="toggleEsDefaultSi()" style="margin-left: 45px;">
+              <label class="form-check-label" for="opcion1">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="opciones" id="opcion2" [(ngModel)]="esDefaultNo" (change)="toggleEsDefaultNo()" style="margin-left: 5px; ">
+              <label class="form-check-label" for="opcion2">No</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="orden">Orden:</label>
+            <input type="number" class="form-control" [(NgModel)]="orden" placeholder="Orden">
+          </div>
+    </div>
+
+
+    <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="openModalConfirmar(confirmar)">Guardar</button>
+        <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+    </div>
+</div>
+
+
+<ng-template #confirmar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-tittle">Titulo Modal</h4>
+        <button class="close" aria-label="close" type="button" (click)="closeModalConfirm(modal)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-centet">
+        <h4>¿Desea confirmar los cambios?</h4>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" style="margin-right: 10px;" (click)="guardarCambios()">Aceptar</button>
+        <button type="button" class="btn btn-danger" (click)="closeModalConfirm(modal)">Cancelar</button>
+    </div>
+</ng-template>

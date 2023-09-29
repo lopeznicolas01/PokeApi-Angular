@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,7 @@ import { ModalDetallePokemonComponent } from './modal-detalle-pokemon/modal-deta
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { ModalModificarEliminarComponent } from './modal-modificar-eliminar/modal-modificar-eliminar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     ModalDetallePokemonComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ModalModificarEliminarComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     AppRoutingModule
   ],
+  schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })

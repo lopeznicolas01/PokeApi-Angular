@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 @Injectable({
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class ApiPokemonService {
 
   private urlApiLocal = "http://localhost:9001/Pokemons/";
-  private urlApi = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
+  private urlApi = "https://pokeapi.co/api/v2/pokemon?limit=5&offset=0";
 
   private urlApiDetail= "https://pokeapi.co/api/v2/pokemon/";
 
@@ -19,33 +19,33 @@ export class ApiPokemonService {
   //   return this.http.post(this.urlApi,data);
   // }
 
-  public getDataPokemonList(): Observable<any>{
-    return this.http.get<any>(this.urlApi);
-  }
+  // public getDataPokemonList(): Observable<any>{
+  //   return this.http.get<any>(this.urlApi);
+  // }
 
-  public getDataPokemonDetail(name:string): Observable<any>{
-    this.finalUri=this.urlApiDetail+name
-    return this.http.get<any>(this.finalUri);
-  }
+  // public getDataPokemonDetail(name:string): Observable<any>{
+  //   this.finalUri=this.urlApiDetail+name
+  //   return this.http.get<any>(this.finalUri);
+  // }
   
-  // public getLocalDataList(): Observable<any>{
-  //   const headers = new HttpHeaders({
-  //           'Access-Control-Allow-Origin': '*'
-  //         });
-      
-  //         this.http.get<any[]>('http://localhost:8080/cars', { headers }).subscribe(data => {
-  //           this.cars = data;
-  //         });
+  public getLocalDataList(): Observable<any>{  
+    let finalUri=this.urlApiLocal+"traerListaPokemon"
+    let body= JSON.parse(`
+    {
+      "cantidad": 10,
+      "offset": 0
+    }`);
+        
+    return this.http.post<any>(finalUri,body);
+  } 
 
-    
-  //   let finalUri=this.urlApiLocal+"traerListaPokemon"
-  //   let body = {
-  //     "limit": 10,
-  //     "offset": 0
-  //   }
-  //   return this.http.post<any>(finalUri,body,{
-      
-  //   });
-  // } 
+  public getLocalDataDetail(name): Observable<any>{  
+    let finalUri=this.urlApiLocal+"traerPokemon"
+    let body= {
+      "name": name
+    }
+
+    return this.http.post<any>(finalUri,body);
+  } 
 
 }

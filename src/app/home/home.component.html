@@ -1,52 +1,51 @@
-<div class="container mt-5" style="background-color: #00236f; border-radius: 2%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);">
-    <h2 style="color: white; text-align: center">Tabla de Pokemones</h2>
-
-    <!-- Botones de Acción -->
-    <div class="mb-3" style="text-align: right; margin-right: 4%">
-        <input type="text" style="margin-right: 1%" placeholder="" [(ngModel)]="datoBuscar" />
-        <button class="btn btn-primary" style="background-color: #1a63ff" (click)="buscar()">
-            Buscar
-        </button>
-        <button class="btn btn-danger" style="margin-left: 1%" (click)="quitarFiltro()">
-            Quitar Filtro
-        </button>
-    </div>
-
-    <!-- Tabla de Datos -->
-    <div class="d-flex justify-content-center">
-        <div class="table-responsive justify-content-center" style="border-radius: 2%; width: 80%;">
-            <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>N°</th>
-                        <th>Nombre</th>
-                        <th>URL</th>
-                        <th>Detalles</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="
-              let item of mostrarResultados
-                ? arregloResponse
-                : copiaArregloResponse;
-              let i = index
-            ">
-                        <tr>
-                            <td>{{ i + 1 }}</td>        
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.url }}</td>                
-                            <td style="text-align: center">
-                                <button class="btn btn-primary" style="background-color: #1a63ff" (click)="openModal(item.name)">
-                                    Ver
-                                </button>
-                            </td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-            </table>
+<div class="container"
+    style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808); width:auto;">
+    <div class="row ">
+        <div class="col">
+            <forum-table id="frm-table" data="{{getPokeAsJsonString()}}" headers='[
+        { "name": "id", "label": "Id", "sort": true },    
+        { "name": "name", "label": "Name", "sort": true },
+        { "name": "url", "label": "Url", "sort": false }
+    ]' filter="true" displaycolumns="true" fixedheader="true" pagesize="[5, 10, 25, 100]"
+        actions='["view", "edit", "delete"]' theme="light" debug="true" (action)="test($event)">
+    </forum-table>
+    <!-- Script para navegadores modernos -->
+    <script src="https://webcomponent.forum.cl/labs-table-cpw-ang/v1/forum-table-es2015.js" type="module"></script>
+    <!-- Script para navegadores antiguos -->
+    <script src="https://webcomponent.forum.cl/labs-table-cpw-ang/v1/forum-table-es5.js" nomodule defer></script>
         </div>
     </div>
+    
+
 </div>
 
+<ng-template #modalConfirmar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-tittle">Titulo Modal</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-centet">
+        <h4>¿Desea confirmar los cambios?</h4>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" style="margin-right: 10px;" (click)="AceptaryCerrar()">Aceptar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancelar</button>
+    </div>
+</ng-template>
 
-
+<!-- <forum-table id="frm-table" data='[
+    { "id": 1, "rut": "16.356.254-7", "valor": 1  },
+    { "id": 1, "rut": "16.356.254-7", "valor": 1  },
+    { "id": 1, "rut": "16.356.254-7", "valor": 1  },
+    { "id": 1, "rut": "16.356.254-7", "valor": 1  },
+    { "id": 1, "rut": "16.356.254-7", "valor": 1  },
+    { "id": 2, "rut": "11.125.115-5", "valor": 2  }
+    ]' headers='[
+        { "name": "id", "label": "ID", "sort": true },
+        { "name": "rut", "label": "RUT", "sort": false },
+        { "name": "valor", "label": "Valor", "sort": true }
+    ]' filter="true" displaycolumns="true" fixedheader="true" pagesize="[5, 10, 25, 100]"
+        actions='["view", "edit", "delete"]' theme="light" debug="true">
+    </forum-table> -->

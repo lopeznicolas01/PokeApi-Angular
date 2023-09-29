@@ -24,7 +24,6 @@
 <button type="button" class="btn btn-outline-info" (click)="openBackground(contenido)">lanzar modal openBackground</button>
 <button type="button" class="btn btn-outline-dark" (click)="openWindow(contenido)">lanzar modal window</button> -->
 
-
 <div class="modal-header justify-content-center">
     <h4 class="modal-tittle">Detalles de {{data.toUpperCase()}}</h4>
     <button class="close btn-danger" aria-label="close" type="button" style="position: absolute; top: 0; right: 0; margin-right: 10px; margin-top: 10px;" (click)="closeModal()">
@@ -35,7 +34,8 @@
 <div class="modal-body">
     <div class="card">
         <div class="card-body text-center">
-            <img [src]="detallesPokemon.sprites.other.dream_world.front_default" alt="Imagen del Pokémon" class="img-fluid rounded" style="max-width: 40%; height: auto;">
+            <!-- falta devolver la imagen desde el quarkus -->
+            <img [src]="detallesPokemon?.sprites?.other['official-artwork']?.front_default" class="img-fluid rounded" style="max-width: 40%; height: auto;">
         </div>
     </div>
     <hr>
@@ -43,6 +43,7 @@
         <dt class="col-sm-4">ID:</dt>
         <dd class="col-sm-8">{{ detallesPokemon.id }}</dd>
 
+        <!-- devolver desde el quarkus -->
         <dt class="col-sm-4">Experiencia base:</dt>
         <dd class="col-sm-8">{{ detallesPokemon.base_experience }}</dd>
 
